@@ -1,19 +1,33 @@
 import csv
 
 def ex1():
-    with open("slavery.csv", 'r') as csv_file:
-        csv_reader = csv.reader(csv_file, delimiter=',')
-        line_count = 0
-        seller = {}
+    # abre el archivo CSV
+    with open('slavery.csv', newline='') as archivo_csv:
+        lector_csv = csv.DictReader(archivo_csv)
 
-        for row in csv_reader:
-            if line_count == 0:
-                print(f'Column names are {", ".join(row)}')
-                line_count += 1
+        # crea un diccionario para contar el número de esclavos vendidos por cada vendedor
+        vendedores_esclavos_vendidos = {}
+
+        # recorre cada fila del archivo CSV
+        for fila in lector_csv:
+            # extrae el nombre del vendedor y el número total de esclavos vendidos
+            vendedor = fila['Seller.Full Name']
+            num_esclavos_vendidos = int(fila['Transaction.Number of Total Slaves Purchased'])
+
+            # actualiza el diccionario de conteo para el vendedor actual
+            if vendedor in vendedores_esclavos_vendidos:
+                vendedores_esclavos_vendidos[vendedor] += num_esclavos_vendidos
             else:
-                print(f'\t{row[0]} xxx {row[1]} xxx {row[2]}.')
-                line_count += 1
-        print(f'Processed {line_count} lines.')
+                vendedores_esclavos_vendidos[vendedor] = num_esclavos_vendidos
+
+        # encuentra el vendedor con el mayor número de esclavos vendidos
+        vendedor_max_esclavos = max(vendedores_esclavos_vendidos, key=vendedores_esclavos_vendidos.get)
+
+        # imprime los resultados
+        print(
+            f"El vendedor que más esclavos ha vendido es: {vendedor_max_esclavos}\n")
+
+
 
 
 def main():
