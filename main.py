@@ -37,32 +37,21 @@ def ex2():
     with open('slavery.csv', newline='') as archivo_csv:
         lector_csv = csv.DictReader(archivo_csv)
 
-        # crea un diccionario para contar el número de esclavos vendidos por cada vendedor
         compradores = {}
 
-        # recorre cada fila del archivo CSV
         for fila in lector_csv:
-            # extrae el nombre del vendedor y el número total de esclavos vendidos
             comprador = fila['Buyer.Full Name']
             comprado = int(fila['Transaction.Number of Total Slaves Purchased'])
             estado = fila['Buyer.State of Origin']
 
-            # actualiza el diccionario de conteo para el vendedor actual
             if comprador in compradores:
-                compradores[
-                    comprador, estado] += comprado  # añade esclavos a un vendedor que esta en diccionario vendedores.
+                compradores[comprador, estado] += comprado
             else:
-                compradores[
-                    comprador, estado] = comprado  # en el caso de que no se encuentre el vendedor añade en la lista de vendedores.
+                compradores[comprador, estado] = comprado
 
-        # encuentra el vendedor con el mayor número de esclavos vendidos
-
-        # el metodo key compara todos los valores que haya en vendedores y la funcion max de saca el valor maximo.
         comprador_max = max(compradores, key=compradores.get)
 
-        # imprime los resultados
-        print(
-            f"\nEl estado del comprador que mas comprado es: {comprador_max[1]}\n")  # imprime el segundo valor del campo comprador que es el estado del comprador.
+        print(f"\nEl estado del comprador que mas comprado es: {comprador_max[1]}\n")
 
 
 def ex3():
@@ -70,44 +59,33 @@ def ex3():
     with open('slavery.csv', newline='') as archivo_csv:
         lector_csv = csv.DictReader(archivo_csv)
 
-        # crea un diccionario para contar el número de esclavos vendidos por cada vendedor
         counties = {}
 
-        # recorre cada fila del archivo CSV
         for fila in lector_csv:
-            # extrae el nombre del vendedor y el número total de esclavos vendidos
             county = fila['Buyer.County of Origin']
             comprado = int(fila['Transaction.Number of Total Slaves Purchased'])
 
-            # actualiza el diccionario de conteo para el vendedor actual
             if county in counties:
-                counties[county] += comprado  # añade esclavos a un vendedor que esta en diccionario vendedores.
+                counties[county] += comprado
             else:
-                counties[
-                    county] = comprado  # en el caso de que no se encuentre el vendedor añade en la lista de vendedores.
+                counties[county] = comprado
 
-        # encuentra el vendedor con el mayor número de esclavos vendidos
-
-        # el metodo key compara todos los valores que haya en vendedores y la funcion max de saca el valor maximo.
         county_max = max(counties, key=counties.get)
 
         # imprime los resultados
         print(
-            f"\nEl condado donde mas se ha comprado es: {county_max}\n")  # imprime el segundo valor del campo comprador que es el estado del comprador.
-
+            f"\nEl condado donde mas se ha comprado es: {county_max}\n")
 
 def ex4():
     # abre el archivo CSV
     with open('slavery.csv', newline='') as archivo_csv:
         lector_csv = csv.DictReader(archivo_csv)
 
-        # crea un diccionario para contar el número de esclavos vendidos por cada vendedor
         edad_esclavos = 0
         numero_esclavos = 0
 
-        # recorre cada fila del archivo CSV
         for fila in lector_csv:
-            # extrae el nombre del vendedor y el número total de esclavos vendidos
+
             edad = float(fila['Slave.Age'])
 
             edad_esclavos = edad_esclavos + edad
@@ -117,7 +95,7 @@ def ex4():
 
         # imprime los resultados
         print(
-            f"\nEl estado del comprador que mas comprado es: {round(resultado, 1)}\n")  # imprime el segundo valor del campo comprador que es el estado del comprador.
+            f"\nEl estado del comprador que mas comprado es: {round(resultado, 1)}\n")
 
 
 def ex5():
@@ -143,13 +121,10 @@ def ex6():
     with open('slavery.csv', newline='') as archivo_csv:
         lector_csv = csv.DictReader(archivo_csv)
 
-        # crea un diccionario para contar el número de esclavos vendidos por cada vendedor
         precio_ventas = 0
         numero_ventas = 0
 
-        # recorre cada fila del archivo CSV
         for fila in lector_csv:
-            # extrae el nombre del vendedor y el número total de esclavos vendidos
             precio = float(fila['Transaction.Sale Details.Price'])
 
             precio_ventas = precio_ventas + precio
@@ -159,7 +134,7 @@ def ex6():
 
         # imprime los resultados
         print(
-            f"\nEl precio medio es de : {round(resultado, 2)}\n")  # imprime el segundo valor del campo comprador que es el estado del comprador.
+            f"\nEl precio medio es de : {round(resultado, 2)}\n")
 
 
 def ex7():
@@ -167,28 +142,21 @@ def ex7():
     with open('slavery.csv', newline='') as archivo_csv:
         lector_csv = csv.DictReader(archivo_csv)
 
-        # crea un diccionario para contar el número de esclavos vendidos por cada vendedor
+
         estados = {}
 
-        # recorre cada fila del archivo CSV
         for fila in lector_csv:
-            # extrae el nombre del vendedor y el número total de esclavos vendidos
+
             estado = fila['Seller.State of Origin']
 
-            # actualiza el diccionario de conteo para el vendedor actual
             if estado in estados:
-                estados[estado] += 1  # añade esclavos a un vendedor que esta en diccionario vendedores.
+                estados[estado] += 1
             else:
-                estados[estado] = 1  # en el caso de que no se encuentre el vendedor añade en la lista de vendedores.
+                estados[estado] = 1
 
-        # encuentra el vendedor con el mayor número de esclavos vendidos
-
-        # el metodo key compara todos los valores que haya en vendedores y la funcion max de saca el valor maximo.
         estado_max = max(estados, key=estados.get)
 
-        # imprime los resultados
-        print(
-            f"\nEl estado donde provienen mas vendedores es: {estado_max}\n")  # imprime el segundo valor del campo comprador que es el estado del comprador.
+        print( f"\nEl estado donde provienen mas vendedores es: {estado_max}\n")
 
 
 def ex8():
@@ -203,10 +171,9 @@ def ex8():
             nombre = fila['Seller.Full Name']
             if vendedor == nombre:
                 ventas = ventas + 1
-        else:
-            pass
 
-        print('El vendedor', nombre, 'ha vendido ', ventas, 'esclavos')
+
+    print('El vendedor', vendedor, 'ha vendido ', ventas, 'esclavos\n')
 
 
 def ex9():
@@ -214,16 +181,13 @@ def ex9():
     with open('slavery.csv', newline='') as archivo_csv:
         lector_csv = csv.DictReader(archivo_csv)
 
-        # crea un diccionario para contar el número de esclavos vendidos por cada vendedor
         precio_ventas_M = 0
         numero_ventas_M = 0
 
         precio_ventas_F = 0
         numero_ventas_F = 0
 
-        # recorre cada fila del archivo CSV
         for fila in lector_csv:
-            # extrae el nombre del vendedor y el número total de esclavos vendidos
             precio = float(fila['Transaction.Sale Details.Price'])
             genero = fila['Slave.Gender']
             if genero == 'M':
@@ -239,7 +203,7 @@ def ex9():
 
         # imprime los resultados
         print(
-            f"\nEl precio medio es de hombres es de: {round(resultado_M, 2)}")  # imprime el segundo valor del campo comprador que es el estado del comprador.
+            f"\nEl precio medio es de hombres es de: {round(resultado_M, 2)}")
         print(f" El precio medio es de hombres es de: {round(resultado_F, 2)}\n")
 
 
@@ -319,7 +283,6 @@ def main():
 
         elif optionMenu == "10":
             ex10()
-
 
         else:
             print("")
